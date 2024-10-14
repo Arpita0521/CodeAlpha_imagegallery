@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Image Gallery with Navigation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            padding: 20px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .gallery-item {
+            width: 230px;
+            height: 230px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.1);
+        }
+
+        /* Full-screen modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 80%;
+            max-height: 80%;
+        }
+
+        .modal-content img {
+            width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+
+        /* Navigation arrows */
+        .prev,
+        .next {
+            position: absolute;
+            top: 50%;
+            font-size: 3em;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            cursor: pointer;
+            user-select: none;
+            transform: translateY(-50%);
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2em;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="gallery-container">
+        <!-- Thumbnail images in order -->
+        <img class="gallery-item" src="front.jpg" alt="Front Image" onclick="openModal(0)">
+        <img class="gallery-item" src="img1.jpg" alt="Image 1" onclick="openModal(1)">
+        <img class="gallery-item" src="img2.jpg" alt="Image 2" onclick="openModal(2)">
+        <img class="gallery-item" src="img3.jpg" alt="Image 3" onclick="openModal(3)">
+        <img class="gallery-item" src="img4.jpg" alt="Image 4" onclick="openModal(4)">
+        <img class="gallery-item" src="img5.jpg" alt="Image 5" onclick="openModal(5)">
+        <img class="gallery-item" src="img6.jpg" alt="Image 6" onclick="openModal(6)">
+        <img class="gallery-item" src="img7.jpg" alt="Image 7" onclick="openModal(7)">
+        <img class="gallery-item" src="img8.jpg" alt="Image 8" onclick="openModal(8)">
+        <img class="gallery-item" src="img9.jpg" alt="Image 9" onclick="openModal(9)">
+        <img class="gallery-item" src="img10.jpg" alt="Image 9" onclick="openModal(10)">
+        <img class="gallery-item" src="img11.jpg" alt="Image 9" onclick="openModal(11)">
+        <img class="gallery-item" src="img12.jpg" alt="Image 9" onclick="openModal(12)">
+        <img class="gallery-item" src="img13.jpg" alt="Image 9" onclick="openModal(13)">
+        <img class="gallery-item" src="img14.jpg" alt="Image 9" onclick="openModal(14)">
+        <img class="gallery-item" src="img15.jpg" alt="Image 9" onclick="openModal(15)">
+        <img class="gallery-item" src="img16.jpg" alt="Image 9" onclick="openModal(16)">
+        <img class="gallery-item" src="img17.jpg" alt="Image 9" onclick="openModal(17)">
+        <img class="gallery-item" src="img18.jpg" alt="Image 9" onclick="openModal(18)">
+        <img class="gallery-item" src="img19.jpg" alt="Image 9" onclick="openModal(19)">
+        <img class="gallery-item" src="img20.jpg" alt="Image 9" onclick="openModal(20)">
+        <img class="gallery-item" src="img21.jpg" alt="Image 9" onclick="openModal(21)">
+        <img class="gallery-item" src="img22.jpg" alt="Image 9" onclick="openModal(22)">
+        <img class="gallery-item" src="img23.jpg" alt="Image 9" onclick="openModal(23)">
+        <img class="gallery-item" src="img24.jpg" alt="Image 9" onclick="openModal(24)">
+        <img class="gallery-item" src="img25.jpg" alt="Image 9" onclick="openModal(25)">
+        <img class="gallery-item" src="img26.jpg" alt="Image 9" onclick="openModal(26)">
+        <img class="gallery-item" src="img27.jpg" alt="Image 9" onclick="openModal(27)">
+        <img class="gallery-item" src="img28.jpg" alt="Image 9" onclick="openModal(28)">
+        <img class="gallery-item" src="img29.jpg" alt="Image 9" onclick="openModal(29)">
+        <img class="gallery-item" src="img30.jpg" alt="Image 9" onclick="openModal(30)">
+        <img class="gallery-item" src="img31.jpg" alt="Image 9" onclick="openModal(31)">
+        <img class="gallery-item" src="img32.jpg" alt="Image 9" onclick="openModal(32)">
+        <img class="gallery-item" src="img33.jpg" alt="Image 9" onclick="openModal(33)">
+        <img class="gallery-item" src="img34.jpg" alt="Image 9" onclick="openModal(34)">
+        <img class="gallery-item" src="img35.jpg" alt="Image 9" onclick="openModal(35)">
+        <img class="gallery-item" src="img36.jpg" alt="Image 9" onclick="openModal(36)">
+        <img class="gallery-item" src="img37.jpg" alt="Image 9" onclick="openModal(37)">
+        <img class="gallery-item" src="img38.jpg" alt="Image 9" onclick="openModal(38)">
+        <img class="gallery-item" src="img39.jpg" alt="Image 9" onclick="openModal(39)">
+        <img class="gallery-item" src="img40.jpg" alt="Image 9" onclick="openModal(40)">
+        <img class="gallery-item" src="img41.jpg" alt="Image 9" onclick="openModal(41)">
+        <img class="gallery-item" src="img42.jpg" alt="Image 9" onclick="openModal(42)">
+        <img class="gallery-item" src="img43.jpg" alt="Image 9" onclick="openModal(43)">
+        <img class="gallery-item" src="img44.jpg" alt="Image 9" onclick="openModal(44)">
+        <img class="gallery-item" src="img45.jpeg" alt="Image 9" onclick="openModal(45)">
+        <img class="gallery-item" src="img46.jpeg" alt="Image 9" onclick="openModal(46)">
+        <img class="gallery-item" src="img47.jpeg" alt="Image 9" onclick="openModal(47)">
+        <img class="gallery-item" src="img48.jpeg" alt="Image 9" onclick="openModal(48)">
+        <img class="gallery-item" src="img49.jpeg" alt="Image 9" onclick="openModal(49)">
+    </div>
+
+    <!-- Full-screen modal -->
+    <div id="modal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <span class="prev" onclick="changeImage(-1)">&#10094;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="">
+        </div>
+        <span class="next" onclick="changeImage(1)">&#10095;</span>
+    </div>
+
+    <script>
+        // Image array in the correct order
+        const images = [
+            'front.jpg',
+            'img1.jpg',
+            'img2.jpg',
+            'img3.jpg',
+            'img4.jpg',
+            'img5.jpg',
+            'img6.jpg',
+            'img7.jpg',
+            'img8.jpg',
+            'img9.jpg',
+            'img10.jpg',
+            'img11.jpg',
+            'img12.jpg',
+            'img13.jpg',
+            'img14.jpg',
+            'img15.jpg',
+            'img16.jpg',
+            'img17.jpg',
+            'img18.jpg',
+            'img18.jpg',
+            'img20.jpg',
+            'img21.jpg',
+            'img22.jpg',
+            'img23.jpg',
+            'img24.jpg',
+            'img25.jpg',
+            'img26.jpg',
+            'img27.jpg',
+            'img28.jpg',
+            'img29.jpg',
+            'img30.jpg',
+            'img31.jpg',
+            'img32.jpg',
+            'img33.jpg',
+            'img34.jpg',
+            'img35.jpg',
+            'img36.jpg',
+            'img37.jpg',
+            'img38.jpg',
+            'img39.jpg',
+            'img40.jpg',
+            'img41.jpg',
+            'img42.jpg',
+            'img43.jpg',
+            'img44.jpg',
+            'img45.jpeg',
+            'img46.jpeg',
+            'img47.jpeg',
+            'img48.jpeg',
+            'img49.jpeg',
+        ];
+
+        let currentIndex = 0;
+
+        // Function to open the modal and show the clicked image
+        function openModal(index) {
+            currentIndex = index;
+            document.getElementById('modal').style.display = 'flex';
+            document.getElementById('modalImage').src = images[currentIndex];
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        // Function to navigate through images
+        function changeImage(direction) {
+            currentIndex += direction;
+            if (currentIndex < 0) {
+                currentIndex = images.length - 1; // Wrap around to last image
+            } else if (currentIndex >= images.length) {
+                currentIndex = 0; // Wrap around to first image
+            }
+            document.getElementById('modalImage').src = images[currentIndex];
+        }
+    </script>
+</body>
+
+</html>
